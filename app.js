@@ -25,7 +25,6 @@ app.get('/city/:cname', async (req, res) => {
     const response = await axios.get(base + query)
     const data = await response.data
     console.log(data)
-    // res.json(response.data)
     res.status(200).json(data)
   } catch (error) {
     res.status(400).json('serber')

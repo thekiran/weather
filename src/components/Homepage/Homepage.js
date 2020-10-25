@@ -27,16 +27,18 @@ const Homepage = () => {
     // setCardStyle(true);
     // console.log(e);
     // console.log(e.target.id);
-    if (e.target.id === 'sub') {
+    if (e.target && e.target.id === 'sub') {
+      //   const res = await fetch('http://localhost:5000/city/' + formValue)
       const res = await fetch('/city/' + formValue)
+      //   console.log(res)
       if (res.status === 200) {
         const data = await res.json()
-        // console.log(data);
+        // console.log(data)
         setData(data)
         setCardStyle(true)
       }
     }
-    if (e.target.id === 'coord') {
+    if (e.target && e.target.id === 'coord') {
       const coord = async (p) => {
         const lat = p.coords.latitude
         const lon = p.coords.longitude
