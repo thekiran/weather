@@ -102,7 +102,7 @@ const Homepage = () => {
                 <h5 className='card-title' />
                 <h6 className='card-subtitle'>{data.name}</h6>
                 <p className='card-text'>
-                  temparature is {data.main.temp} and max temp is{' '}
+                  temparature is {data.main.temp} and max temp is
                   {data.main.temp_max},
                 </p>
                 <p className='card-text'>
@@ -110,7 +110,11 @@ const Homepage = () => {
                   {data.main.pressure}
                 </p>
                 <div className='c-link'>
-                  <button className='card-link'>More Info</button>
+                  <a
+                    target='_blank'
+                    href={`https://www.google.com/search?q=${data.name}+weather`}>
+                    <button className='card-link'>More Info</button>
+                  </a>
                 </div>
               </div>
             </Fragment>
