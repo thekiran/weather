@@ -16,5 +16,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": "14.13.1",
+    "npm": "6.14.8"
   }
 }
