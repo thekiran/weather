@@ -29,7 +29,9 @@ const Homepage = () => {
     // console.log(e.target.id);
     if (e.target && e.target.id === 'sub') {
       //   const res = await fetch('http://localhost:5000/city/' + formValue)
-      const res = await fetch('/city/' + formValue)
+      const res = await fetch(
+        'https://weatherapplicationn123.herokuapp.com/city/' + formValue
+      )
       //   console.log(res)
       if (res.status === 200) {
         const data = await res.json()
@@ -43,7 +45,9 @@ const Homepage = () => {
         const lat = p.coords.latitude
         const lon = p.coords.longitude
 
-        const response = await fetch(`/pos/${lat}/${lon}`)
+        const response = await fetch(
+          `https://weatherapplicationn123.herokuapp.com/pos/${lat}/${lon}`
+        )
 
         const data = await response.json()
         setData(data)
