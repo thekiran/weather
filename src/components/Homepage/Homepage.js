@@ -27,7 +27,9 @@ const Homepage = () => {
     // setCardStyle(true);
     // console.log(e);
     // console.log(e.target.id);
-    if (e.target && e.target.id === 'sub') {
+    const tar = e.target
+    const tarId = e.target.id
+    if (tar && tarId === 'sub') {
       //   const res = await fetch('http://localhost:5000/city/' + formValue)
       const res = await fetch(
         'https://weatherapplicationn123.herokuapp.com/city/' + formValue
@@ -40,7 +42,7 @@ const Homepage = () => {
         setCardStyle(true)
       }
     }
-    if (e.target && e.target.id === 'coord') {
+    if (tar && tarId === 'coord') {
       const coord = async (p) => {
         const lat = p.coords.latitude
         const lon = p.coords.longitude
