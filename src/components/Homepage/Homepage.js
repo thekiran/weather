@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import loader from './loading.gif'
 
 import './homepage.css'
 const Homepage = () => {
@@ -7,17 +8,18 @@ const Homepage = () => {
   const [info, setinfo] = useState(null)
   const [formValue, setFormValue] = useState('')
   const [data, setData] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const card = () => {
     if (cardStyle) {
       return {
-        visibilty: 'visible',
-        transform: 'translateY(50px)',
+        opacity: '1',
+        transform: 'translateY(0)',
         transitionProperty: 'transform',
         transitionDuration: '1s',
       }
     } else {
-      return { visibilty: 'visible', transform: 'translateY(300px)' }
+      return { opacity: '0', transform: 'translateY(2000px)' }
     }
   }
   const onClick = async (e) => {
@@ -30,6 +32,7 @@ const Homepage = () => {
     const tar = e.target
     const tarId = e.target.id
     if (tar && tarId === 'sub') {
+      setLoading(true)
       //   const res = await fetch('http://localhost:5000/city/' + formValue)
       const res = await fetch(
         'https://weatherapplicationn123.herokuapp.com/city/' + formValue
@@ -39,6 +42,7 @@ const Homepage = () => {
         const data = await res.json()
         // console.log(data)
         setData(data)
+        setLoading(false)
         setCardStyle(true)
       }
     }
@@ -47,12 +51,14 @@ const Homepage = () => {
         const lat = p.coords.latitude
         const lon = p.coords.longitude
 
+        setLoading(true)
         const response = await fetch(
           `https://weatherapplicationn123.herokuapp.com/pos/${lat}/${lon}`
         )
 
         const data = await response.json()
         setData(data)
+        setLoading(false)
         setCardStyle(true)
       }
       const loc = () => {
@@ -96,6 +102,12 @@ const Homepage = () => {
           </form>
         </div>
       </div>
+      {loading && (
+        <div className='load-container'>
+          <img src={loader} alt='' className='loading' />
+          {/* <h1>Loading...</h1> */}
+        </div>
+      )}
       <div className='info-container'>
         <div style={card()} className='info-content'>
           {data ? (
